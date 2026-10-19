@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..600&amp;family=Lora:ital,wght@0,400..700;1,400..700&amp;display=swap" rel="stylesheet">
+</helmet>
+<div style="background: rgba(255,255,255,0.86); backdrop-filter: blur(28px) saturate(160%); -webkit-backdrop-filter: blur(28px) saturate(160%); border: 1px solid rgba(255,255,255,0.7); border-radius: clamp(24px, 4vw, 32px); padding: clamp(18px, 3.5vw, 36px); box-sizing: border-box; width: 100%; font-family: 'Inter', sans-serif; color: #1E1E1E; font-size: 14px; line-height: 20px">
+<sc-if value="{{notSent}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: clamp(14px, 2.5vw, 24px)">
+<div style="display: flex; justify-content: space-between; gap: 12px; font-size: 13px; color: #6B6B6B"><span>Paso {{step}} de 2</span><span>Menos de 1 minuto</span></div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px">
+<span style="height: 4px; border-radius: 999px; background: #2E7D4F"></span>
+<span style="height: 4px; border-radius: 999px; background: {{bar2}}; transition: background 400ms cubic-bezier(0.22,1,0.36,1)"></span>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isStep1}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; flex-direction: column; gap: clamp(14px, 2.5vw, 22px)">
+<h3 style="margin: 0; font-family: 'Lora', Georgia, serif; font-weight: 400; font-size: clamp(26px, 4vw, 38px); line-height: 1.2; letter-spacing: -0.02em">{{titulo}}</h3>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 14px">¿Para qué buscas tu departamento?</span>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<sc-for list="{{usos}}" as="o" hint-placeholder-count="2">
+<button type="button" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="display: flex; flex-direction: column; align-items: flex-start; gap: 2px; padding: clamp(10px, 2vw, 16px) clamp(12px, 2vw, 18px); border-radius: clamp(14px, 2.5vw, 20px); border: 1px solid {{o.border}}; background: {{o.bg}}; color: {{o.color}}; font-family: 'Inter', sans-serif; text-align: left; cursor: pointer; transition: background 300ms cubic-bezier(0.22,1,0.36,1), color 300ms, border-color 300ms">
+<span style="font-size: clamp(14px, 2vw, 16px); line-height: 1.4">{{o.label}}</span>
+<span style="font-size: 13px; color: {{o.sub}}">{{o.hint}}</span>
+</button>
+</sc-for>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 14px">¿Cuál es tu renta líquida mensual?</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{rentas}}" as="o" hint-placeholder-count="5">
+<button type="button" onClick="{{o.pick}}" aria-pressed="{{o.pressed}}" style="height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid {{o.border}}; background: {{o.bg}}; color: {{o.color}}; font-family: 'Inter', sans-serif; font-size: 14px; white-space: nowrap; cursor: pointer; transition: background 300ms cubic-bezier(0.22,1,0.36,1), color 300ms, border-color 300ms">{{o.label}}</button>
+</sc-for>
+</div>
+</div>
+<button type="button" onClick="{{next}}" disabled="{{cantNext}}" style="height: clamp(48px, 6vw, 56px); border-radius: 999px; border: 0; background: {{nextBg}}; color: {{nextColor}}; font-family: 'Inter', sans-serif; font-size: 14px; cursor: {{nextCursor}}; transition: background 400ms cubic-bezier(0.22,1,0.36,1), color 400ms">Continuar</button>
+<p style="margin: 0; text-align: center; font-size: 12px; line-height: 1.6; color: #6B6B6B">Sin compromiso. Tus datos solo se usan para contactarte.</p>
+</div>
+</sc-if>
+
+<sc-if value="{{isStep2}}" hint-placeholder-val="{{false}}">
+<form onSubmit="{{submit}}" style="display: flex; flex-direction: column; gap: 18px; margin: 0">
+<h3 style="margin: 0; font-family: 'Lora', Georgia, serif; font-weight: 400; font-size: clamp(26px, 4vw, 38px); line-height: 1.2; letter-spacing: -0.02em">¿Dónde te contactamos?</h3>
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 18px; border-radius: 16px; background: #FFFFFF">
+<span>{{resumen}}</span>
+<button type="button" onClick="{{back}}" style="padding: 0; border: 0; background: none; font-family: 'Inter', sans-serif; font-size: 14px; color: #1E1E1E; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; transition: opacity 300ms" style-hover="opacity: 0.6">Cambiar</button>
+</div>
+<label style="display: flex; flex-direction: column; gap: 8px"><span>Nombre y apellido</span><input name="nombre" required="required" autocomplete="name" placeholder="Ej: María González" style="height: 52px; padding: 0 18px; border-radius: 16px; border: 1px solid rgba(64,64,64,0.16); background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #1E1E1E; box-sizing: border-box; width: 100%; outline-color: #1E1E1E"></input></label>
+<label style="display: flex; flex-direction: column; gap: 8px"><span>RUT</span><input name="rut" required="required" placeholder="12.345.678-9" style="height: 52px; padding: 0 18px; border-radius: 16px; border: 1px solid rgba(64,64,64,0.16); background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #1E1E1E; box-sizing: border-box; width: 100%; outline-color: #1E1E1E"></input></label>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px">
+<label style="display: flex; flex-direction: column; gap: 8px; min-width: 0"><span>Teléfono</span><input name="telefono" type="tel" required="required" autocomplete="tel" placeholder="+56 9 1234 5678" style="height: 52px; padding: 0 18px; border-radius: 16px; border: 1px solid rgba(64,64,64,0.16); background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #1E1E1E; box-sizing: border-box; width: 100%; outline-color: #1E1E1E"></input></label>
+<label style="display: flex; flex-direction: column; gap: 8px; min-width: 0"><span>Correo</span><input name="email" type="email" required="required" autocomplete="email" placeholder="nombre@correo.cl" style="height: 52px; padding: 0 18px; border-radius: 16px; border: 1px solid rgba(64,64,64,0.16); background: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 15px; color: #1E1E1E; box-sizing: border-box; width: 100%; outline-color: #1E1E1E"></input></label>
+</div>
+<button type="submit" style="height: 56px; border-radius: 999px; border: 0; background: #2E7D4F; color: #FFFFFF; font-family: 'Inter', sans-serif; font-size: 14px; cursor: pointer; transition: background 400ms cubic-bezier(0.22,1,0.36,1), transform 400ms cubic-bezier(0.22,1,0.36,1)" style-hover="background: #24663F; transform: scale(1.02)">Quiero que me contacten</button>
+<p style="margin: 0; text-align: center; font-size: 12px; line-height: 1.6; color: #6B6B6B">Al enviar aceptas que Jardines de Mapocho te contacte. No compartimos tus datos.</p>
+</form>
+</sc-if>
+
+<sc-if value="{{sent}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 10px; padding: 32px 0">
+<h3 style="margin: 0; font-family: 'Lora', Georgia, serif; font-weight: 400; font-size: clamp(26px, 4vw, 38px); line-height: 1.2; letter-spacing: -0.02em"><span style="display: block">Gracias, {{nombre}}.</span><span style="display: block; color: #6B6B6B; font-style: italic">Te llamamos hoy.</span></h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #6B6B6B">Recibimos tus datos. Katherine te llamará para resolver tus dudas y agendar tu visita.</p>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:460,&quot;height&quot;:680},&quot;titulo&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Te llamamos hoy&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { step: 1, sent: false, nombre: '', uso: null, renta: null };
+  sel(on) {
+    return { bg: on ? '#2E7D4F' : '#FFFFFF', color: on ? '#FFFFFF' : '#1E1E1E', border: on ? '#2E7D4F' : 'rgba(64,64,64,0.16)', pressed: on ? 'true' : 'false' };
+  }
+  renderVals() {
+    const s = this.state;
+    const ready = !!(s.uso && s.renta);
+    return {
+      titulo: this.props.titulo ?? 'Te llamamos hoy',
+      step: s.step,
+      sent: s.sent,
+      notSent: !s.sent,
+      isStep1: !s.sent && s.step === 1,
+      isStep2: !s.sent && s.step === 2,
+      bar2: s.step === 2 ? '#2E7D4F' : 'rgba(30,30,30,0.14)',
+      nombre: s.nombre,
+      usos: [
+        { label: 'Invertir', hint: 'Para arrendar' },
+        { label: 'Vivir', hint: 'Para mí o mi familia' }
+      ].map(o => { const on = s.uso === o.label; return { ...o, ...this.sel(on), sub: on ? 'rgba(255,255,255,0.7)' : '#6B6B6B', pick: () => this.setState({ uso: o.label }) }; }),
+      rentas: ['Menos de $1,4 MM', '$1,4 – 1,5 MM', '$1,5 – 1,7 MM', '$1,7 – 2 MM', 'Más de $2 MM']
+        .map(label => ({ label, ...this.sel(s.renta === label), pick: () => this.setState({ renta: label }) })),
+      cantNext: !ready,
+      nextBg: ready ? '#2E7D4F' : 'rgba(30,30,30,0.08)',
+      nextColor: ready ? '#FFFFFF' : '#7A7A7A',
+      nextCursor: ready ? 'pointer' : 'not-allowed',
+      next: () => { if (ready) this.setState({ step: 2 }); },
+      back: () => this.setState({ step: 1 }),
+      resumen: `${s.uso || ''} · ${s.renta || ''}`,
+      submit: (e) => {
+        e.preventDefault();
+        const fd = new FormData(e.currentTarget);
+        this.setState({ sent: true, nombre: String(fd.get('nombre') || '').split(' ')[0] });
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

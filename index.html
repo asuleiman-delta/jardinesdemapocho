@@ -20,6 +20,9 @@ a{color:#1E1E1E}a:hover{color:#1E1E1E}
 @keyframes ldbar{0%{transform:translateX(-100%)}100%{transform:translateX(250%)}}
 @keyframes ldlogo{0%,100%{opacity:1}50%{opacity:0.55}}
 .show-sm{display:none}
+[data-htrack]::-webkit-scrollbar{display:none}
+@media (max-width:860px){.hs{height:auto !important}.hs-sticky{position:static !important;height:auto !important;min-height:0 !important}.hs-track{flex:none !important;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 16px;transform:none !important;scrollbar-width:none;-webkit-overflow-scrolling:touch}.hs-fig{height:min(64vh,480px) !important;flex-basis:84% !important;scroll-snap-align:start}}
+@media (max-width:860px){.pl-card{flex-direction:column;flex-wrap:nowrap !important;gap:16px !important}.pl-info{display:contents !important}.pl-sel{position:sticky;z-index:20;margin:8px 8px 0;padding:6px;border-radius:999px;background:rgba(255,255,255,0.72);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);box-shadow:0 8px 24px rgba(31,77,54,0.10)}.pl-pad{padding:0 16px}}
 @media (max-width:860px){.hero-wrap{display:grid !important;grid-template-columns:minmax(0,1fr);padding:0 !important;min-height:0 !important;border-radius:0 !important;overflow:visible !important;gap:8px !important}.hero-media{position:relative !important;inset:auto !important;grid-area:1/1;width:100% !important;height:100% !important;min-height:min(72vh,560px);border-radius:24px}.hero-text{grid-area:1/1;align-self:end;padding:24px 20px;max-width:none !important}.hero-form{grid-area:2/1;background:linear-gradient(145deg,#F7F8F6,#EEF2EC);border:1px solid #E2E2E2;border-radius:24px;overflow:hidden;box-shadow:0 10px 28px rgba(31,77,54,0.08)}}
 @media (max-width:860px){.hide-sm{display:none !important}.show-sm{display:inline}}
 @media (max-width:1180px){.hide-md{display:none !important}}
@@ -71,11 +74,11 @@ a{color:#1E1E1E}a:hover{color:#1E1E1E}
 </div>
 </section>
 
-<section aria-label="El proyecto en cifras" style="padding: 0 24px">
-<div style="max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); border-bottom: 1px dashed rgba(64,64,64,0.24)">
+<section aria-label="El proyecto en cifras" style="padding: clamp(8px, 2vw, 0px) clamp(16px, 3vw, 24px) 0">
+<div style="max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(150px, 45%), 1fr)); border-bottom: 1px dashed rgba(64,64,64,0.24)">
 <sc-for list="{{stats}}" as="s" hint-placeholder-count="5">
-<div style="display: flex; flex-direction: column; gap: 6px; padding: 40px clamp(16px, 2vw, 28px)">
-<span style="font-family: 'Lora', Georgia, serif; font-weight: 400; font-size: clamp(24px, 2.2vw, 34px); line-height: 1.25; letter-spacing: -0.02em; color: #2E7D4F; white-space: nowrap">{{s.a}}</span>
+<div style="display: flex; flex-direction: column; gap: 4px; padding: clamp(16px, 3vw, 40px) clamp(8px, 2vw, 28px)">
+<span style="font-family: 'Lora', Georgia, serif; font-weight: 400; font-size: clamp(22px, 2.2vw, 34px); line-height: 1.25; letter-spacing: -0.02em; color: #2E7D4F; white-space: nowrap">{{s.a}}</span>
 <span style="font-size: 14px; color: #9A9A9A">{{s.b}}</span>
 </div>
 </sc-for>
@@ -153,26 +156,26 @@ a{color:#1E1E1E}a:hover{color:#1E1E1E}
 <div data-reveal="2"><a href="#formulario" style="display: inline-flex; align-items: center; height: 56px; padding: 0 28px; border-radius: 999px; background: #2E7D4F; color: #FFFFFF; text-decoration: none; white-space: nowrap; transition: background 400ms cubic-bezier(0.22,1,0.36,1), transform 400ms cubic-bezier(0.22,1,0.36,1)" style-hover="background: #24663F; transform: scale(1.02)">Agenda tu visita</a></div>
 </div>
 <div style="max-width: 1424px; margin: 0 auto; display: flex; flex-direction: column; gap: 8px">
-<div data-reveal="0" style="background: linear-gradient(145deg, rgba(255,255,255,0.92), rgba(243,245,242,0.78)); backdrop-filter: blur(20px) saturate(140%); -webkit-backdrop-filter: blur(20px) saturate(140%); border: 1px solid #E2E2E2; box-shadow: 14px 14px 36px rgba(31,77,54,0.10), -10px -10px 28px rgba(255,255,255,0.95), inset 0 1px 0 rgba(255,255,255,1); border-radius: 36px; padding: 8px; display: flex; flex-wrap: wrap; gap: 8px">
-<div style="flex: 1 1 320px; min-width: 0; padding: clamp(20px, 2.4vw, 32px); box-sizing: border-box; display: flex; flex-direction: column; gap: 28px">
-<div style="display: flex; flex-direction: column; gap: 10px"><span style="font-size: 13px; color: #6B6B6B">Elige el tipo de planta</span><div role="group" aria-label="Tipo de planta" style="display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 2px; padding: 4px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 1px 2px rgba(0,0,0,0.04), inset 0 0 0 1px rgba(64,64,64,0.08)"><sc-for list="{{tipos}}" as="t" hint-placeholder-count="9"><button type="button" onClick="{{t.pick}}" aria-pressed="{{t.pressed}}" style="height: 40px; min-width: 0; padding: 0; border: 0; border-radius: 999px; background: {{t.bg}}; color: {{t.color}}; box-shadow: {{t.shadow}}; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: {{t.weight}}; cursor: pointer; transition: background 350ms cubic-bezier(0.22,1,0.36,1), color 350ms, box-shadow 350ms" style-hover="background: {{t.hoverBg}}">{{t.id}}</button></sc-for></div></div>
-<div style="display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'Lora', Georgia, serif; font-weight: 400; font-size: clamp(28px, 2.6vw, 36px); line-height: 1.2; letter-spacing: -0.02em">{{tipoLabel}}</span><span style="font-size: 15px; color: #6B6B6B">{{tipoDesc}}</span></div>
-<div style="margin-top: auto"><div style="display: flex; flex-direction: column"><sc-for list="{{tipoSup}}" as="s" hint-placeholder-count="3"><div style="display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(64,64,64,0.12); font-size: 15px; color: #6B6B6B"><span>{{s.k}}</span><span>{{s.v}}</span></div></sc-for><div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 18px 0 4px"><span style="font-size: 16px; font-weight: 500">Superficie total</span><span style="font-family: 'Lora', Georgia, serif; font-size: clamp(30px, 2.8vw, 40px); line-height: 1; letter-spacing: -0.02em; color: #2E7D4F">{{tipoTotal}}</span></div></div></div>
+<div data-reveal="0" class="pl-card" style="background: linear-gradient(145deg, rgba(255,255,255,0.92), rgba(243,245,242,0.78)); backdrop-filter: blur(20px) saturate(140%); -webkit-backdrop-filter: blur(20px) saturate(140%); border: 1px solid #E2E2E2; box-shadow: 14px 14px 36px rgba(31,77,54,0.10), -10px -10px 28px rgba(255,255,255,0.95), inset 0 1px 0 rgba(255,255,255,1); border-radius: 36px; padding: 8px; display: flex; flex-wrap: wrap; gap: 8px">
+<div class="pl-info" style="flex: 1 1 320px; min-width: 0; padding: clamp(20px, 2.4vw, 32px); box-sizing: border-box; display: flex; flex-direction: column; gap: 28px">
+<div class="pl-sel" style="display: flex; flex-direction: column; gap: 10px; top: {{selTop}}; transition: top 300ms cubic-bezier(0.22,1,0.36,1)"><span class="hide-sm" style="font-size: 13px; color: #6B6B6B">Elige el tipo de planta</span><div role="group" aria-label="Tipo de planta" style="display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 2px; padding: 4px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 1px 2px rgba(0,0,0,0.04), inset 0 0 0 1px rgba(64,64,64,0.08)"><sc-for list="{{tipos}}" as="t" hint-placeholder-count="9"><button type="button" onClick="{{t.pick}}" aria-pressed="{{t.pressed}}" style="height: 40px; min-width: 0; padding: 0; border: 0; border-radius: 999px; background: {{t.bg}}; color: {{t.color}}; box-shadow: {{t.shadow}}; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: {{t.weight}}; cursor: pointer; transition: background 350ms cubic-bezier(0.22,1,0.36,1), color 350ms, box-shadow 350ms" style-hover="background: {{t.hoverBg}}">{{t.id}}</button></sc-for></div></div>
+<div class="pl-pad" style="display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'Lora', Georgia, serif; font-weight: 400; font-size: clamp(28px, 2.6vw, 36px); line-height: 1.2; letter-spacing: -0.02em">{{tipoLabel}}</span><span style="font-size: 15px; color: #6B6B6B">{{tipoDesc}}</span></div>
+<div class="pl-pad" style="margin-top: auto"><div style="display: flex; flex-direction: column"><sc-for list="{{tipoSup}}" as="s" hint-placeholder-count="3"><div style="display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(64,64,64,0.12); font-size: 15px; color: #6B6B6B"><span>{{s.k}}</span><span>{{s.v}}</span></div></sc-for><div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 18px 0 4px"><span style="font-size: 16px; font-weight: 500">Superficie total</span><span style="font-family: 'Lora', Georgia, serif; font-size: clamp(30px, 2.8vw, 40px); line-height: 1; letter-spacing: -0.02em; color: #2E7D4F">{{tipoTotal}}</span></div></div></div>
 </div>
 <div style="flex: 2.2 1 560px; min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 8px">
 <div style="background: rgba(255,255,255,0.72); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid #E2E2E2; box-shadow: inset 2px 2px 6px rgba(31,77,54,0.04), 0 6px 18px rgba(31,77,54,0.07); border-radius: 24px; display: flex; flex-direction: column; min-height: clamp(320px, 30vw, 440px); box-sizing: border-box; padding: 20px; gap: 12px"><div style="flex: 1; min-height: 0; position: relative"><img data-lb="" src="{{tipoSrc}}" alt="{{tipoLabel}}" style="cursor: pointer; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block"></img><span aria-hidden="true" style="position: absolute; right: 14px; bottom: 14px; width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid #E2E2E2; color: #1E1E1E; display: flex; align-items: center; justify-content: center; pointer-events: none; box-shadow: 0 2px 8px rgba(0,0,0,0.08); opacity: 0; transform: scale(0.85); transition: opacity 250ms ease, transform 250ms cubic-bezier(0.22,1,0.36,1)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path><path d="M11 8v6"></path><path d="M8 11h6"></path></svg></span></div><span style="font-size: 14px; color: #6B6B6B">Planta amoblada referencial</span></div>
 <div style="background: rgba(255,255,255,0.72); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid #E2E2E2; box-shadow: inset 2px 2px 6px rgba(31,77,54,0.04), 0 6px 18px rgba(31,77,54,0.07); border-radius: 24px; display: flex; flex-direction: column; min-height: clamp(320px, 30vw, 440px); box-sizing: border-box; padding: 20px; gap: 12px"><div style="flex: 1; min-height: 0; position: relative"><img data-lb="" src="{{tipoPiso}}" alt="{{tipoPisoAlt}}" style="cursor: pointer; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block"></img><span aria-hidden="true" style="position: absolute; right: 14px; bottom: 14px; width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid #E2E2E2; color: #1E1E1E; display: flex; align-items: center; justify-content: center; pointer-events: none; box-shadow: 0 2px 8px rgba(0,0,0,0.08); opacity: 0; transform: scale(0.85); transition: opacity 250ms ease, transform 250ms cubic-bezier(0.22,1,0.36,1)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path><path d="M11 8v6"></path><path d="M8 11h6"></path></svg></span></div><span style="font-size: 14px; color: #6B6B6B">Ubicación en la planta de piso</span></div>
 </div>
 </div>
-<div data-hscroll="" style="position: relative; height: 300vh; margin-top: clamp(48px, 5vw, 80px)">
-<div style="position: sticky; top: 92px; height: calc(100vh - 108px); min-height: 320px; width: 100vw; margin-left: calc(50% - 50vw); display: flex; flex-direction: column; gap: 24px; overflow: hidden">
+<div data-hscroll="" class="hs" style="position: relative; height: 300vh; margin-top: clamp(48px, 5vw, 80px)">
+<div class="hs-sticky" style="position: sticky; top: 92px; height: calc(100vh - 108px); min-height: 320px; width: 100vw; margin-left: calc(50% - 50vw); display: flex; flex-direction: column; gap: 24px; overflow: hidden">
 <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; padding: 0 max(24px, calc(50vw - 696px))">
 <span style="font-size: 14px; color: #9A9A9A">Living · Dormitorio · Cocina y comedor · Baño · Terraza</span>
 <div style="width: 120px; height: 2px; border-radius: 999px; background: rgba(64,64,64,0.12); overflow: hidden"><div data-hprogress="" style="width: 0; height: 100%; background: #1E1E1E"></div></div>
 </div>
-<div data-htrack="" style="flex: 1; min-height: 0; display: flex; gap: 8px; padding: 0 max(8px, calc(50vw - 712px)); will-change: transform">
+<div data-htrack="" class="hs-track" style="flex: 1; min-height: 0; display: flex; gap: 8px; padding: 0 max(8px, calc(50vw - 712px)); will-change: transform">
 <sc-for list="{{rooms}}" as="c" hint-placeholder-count="4">
-<figure style="flex: 0 0 clamp(300px, 64vw, 1080px); height: 100%; margin: 0; position: relative; border-radius: 32px; overflow: hidden; background: #1E1E1E">
+<figure class="hs-fig" style="flex: 0 0 clamp(300px, 64vw, 1080px); height: 100%; margin: 0; position: relative; border-radius: 32px; overflow: hidden; background: #1E1E1E">
 <img data-lb="" src="{{c.src}}" alt="{{c.alt}}" style="cursor: pointer; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 700ms cubic-bezier(0.22,1,0.36,1)" style-hover="transform: scale(1.03)"></img><span aria-hidden="true" style="position: absolute; right: 14px; bottom: 14px; width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid #E2E2E2; color: #1E1E1E; display: flex; align-items: center; justify-content: center; pointer-events: none; box-shadow: 0 2px 8px rgba(0,0,0,0.08); opacity: 0; transform: scale(0.85); transition: opacity 250ms ease, transform 250ms cubic-bezier(0.22,1,0.36,1)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path><path d="M11 8v6"></path><path d="M8 11h6"></path></svg></span>
 <div style="position: absolute; inset: 0 0 auto 0; height: 50%; background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0)); pointer-events: none"></div>
 <figcaption style="position: absolute; top: clamp(24px, 3vw, 44px); left: clamp(24px, 3vw, 48px); right: 24px; max-width: 460px; display: flex; flex-direction: column; gap: 10px; pointer-events: none"><span style="font-size: 22px; line-height: 1.4; letter-spacing: -0.02em; color: #FFFFFF">{{c.label}}</span></figcaption>
@@ -335,8 +338,11 @@ class Component extends DCLogic {
     this.hs = document.querySelector('[data-hscroll]');
     this.ht = document.querySelector('[data-htrack]');
     this.hp = document.querySelector('[data-hprogress]');
+    this.isMob = () => window.matchMedia('(max-width: 860px)').matches;
+    if (this.ht) this.ht.addEventListener('scroll', () => { if (!this.isMob() || !this.hp) return; const ex = this.ht.scrollWidth - this.ht.clientWidth; this.hp.style.width = (ex > 0 ? this.ht.scrollLeft / ex * 100 : 0) + '%'; }, { passive: true });
     this.sizeH = () => {
       if (!this.hs || !this.ht) return;
+      if (this.isMob()) { this.hs.style.height = ''; this.ht.style.transform = ''; return; }
       const extra = Math.max(0, this.ht.scrollWidth - this.ht.clientWidth);
       this.hs.style.height = (this.hs.firstElementChild.offsetHeight + extra) + 'px';
       this.updateH();
@@ -379,7 +385,7 @@ class Component extends DCLogic {
     car.scrollBy({ left: dir * ((card ? card.offsetWidth : 400) + 8), behavior: 'smooth' });
   }
   updateH() {
-    if (!this.hs || !this.ht) return;
+    if (!this.hs || !this.ht || (this.isMob && this.isMob())) return;
     const r = this.hs.getBoundingClientRect();
     const range = this.hs.offsetHeight - this.hs.firstElementChild.offsetHeight;
     const p = range > 0 ? Math.max(0, Math.min(1, (92 - r.top) / range)) : 0;
@@ -479,6 +485,7 @@ class Component extends DCLogic {
       hdrBlur: sc ? 'blur(16px)' : 'none',
       hdrColor: sc ? '#1E1E1E' : '#FFFFFF',
       hdrBorder: sc ? 'rgba(64,64,64,0.1)' : 'rgba(255,255,255,0)',
+      selTop: st.hidden ? '12px' : '92px',
       hdrY: st.hidden ? 'translateY(calc(-100% - 24px))' : 'translateY(0)',
       logoSrc: sc ? 'assets/logo.png' : 'assets/logo-blanco.png',
       ctaBg: '#2E7D4F',

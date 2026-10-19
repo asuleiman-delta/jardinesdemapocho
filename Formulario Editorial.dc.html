@@ -109,7 +109,10 @@ class Component extends DCLogic {
       submit: (e) => {
         e.preventDefault();
         const fd = new FormData(e.currentTarget);
-        this.setState({ sent: true, nombre: String(fd.get('nombre') || '').split(' ')[0] });
+        const nombre = String(fd.get('nombre') || '').trim().split(' ')[0];
+        this.setState({ sent: true, nombre });
+        const url = (this.props.gracias ?? 'Gracias.dc.html') + '?n=' + encodeURIComponent(nombre) + '&uso=' + encodeURIComponent(s.uso || '');
+        window.location.href = url;
       }
     };
   }
